@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import './App.css'
-import AuthLayout from './components/auth/layout'
-import AuthRegister from './pages/auth/register'
-import AuthLogin from './pages/auth/login'
+import AuthLayout from "./components/auth/layout";
+import AuthLogin from "./pages/auth/login";
+import AuthRegister from "./pages/auth/register";
 import AdminLayout from "./components/admin-view/layout";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
@@ -12,15 +11,36 @@ import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
-import ShoppingAccount from "./pages/shopping-view/account";
 import ShoppingCheckout from "./pages/shopping-view/checkout";
+import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
+import { useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
+import { Skeleton } from "@/components/ui/skeleton"
+
+
+
 
 function App() {
 
-  const isAuthenticated = false;
-  const user = null;
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]"  />
+
+
+  console.log(isLoading, user);
+
 
   return (
     <div>

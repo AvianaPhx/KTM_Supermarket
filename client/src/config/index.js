@@ -20,8 +20,8 @@ export const registerFormControls = [
         componentType: "input",
         type: "password",
     },
-]
-
+];
+  
 export const loginFormControls = [
     {
         name: "email",
@@ -37,4 +37,4 @@ export const loginFormControls = [
         componentType: "input",
         type: "password",
     },
-]
+];

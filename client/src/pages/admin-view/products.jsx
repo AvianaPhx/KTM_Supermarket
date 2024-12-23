@@ -23,7 +23,7 @@ function AdminProducts() {
     const [formData, setFormData] = useState(initialFormData);
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-    const [ setImageLoadingState] = useState(false);
+    const [imageLoadingState, setImageLoadingState] = useState(false);
 
     function onSubmit(){
 

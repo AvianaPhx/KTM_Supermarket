@@ -14,7 +14,6 @@ const initialFormData = {
     price: "",
     salePrice: "",
     totalStock: "",
-    averageReview: 0,
 };
 
 function AdminProducts() {
@@ -24,7 +23,7 @@ function AdminProducts() {
     const [formData, setFormData] = useState(initialFormData);
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-    const [imageLoadingState, setImageLoadingState] = useState(false);
+    const [ setImageLoadingState] = useState(false);
 
     function onSubmit(){
 
@@ -58,7 +57,7 @@ function AdminProducts() {
                         setUploadedImageUrl={setUploadedImageUrl}
                         setImageLoadingState={setImageLoadingState}
                     />
-                    <div className="py-6">
+                    <div className="py-6"> 
                         <CommonForm 
                             onSubmit={onSubmit}
                             formData={formData}

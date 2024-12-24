@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet"
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const adminSidebarMenuItems = [
     {
@@ -62,6 +63,7 @@ function AdminSideBar({open, setOpen}) {
     <Fragment>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-64">
+        <DialogDescription className="hidden">This is the sidebar for the header.</DialogDescription>
           <div className="flex flex-col h-full"> 
           <SheetHeader className="border-b">
             <SheetTitle className='flex gap-2 mt-5 mb-5'>

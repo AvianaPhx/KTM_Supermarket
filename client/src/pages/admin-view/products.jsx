@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { addNewProduct, deleteProduct, editProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductTile from "@/components/admin-view/product-tile";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const initialFormData = {
     image: null,
@@ -119,6 +120,7 @@ function AdminProducts() {
                 }}
             >
                 <SheetContent side='right' className="overflow-auto">
+                <DialogDescription className="hidden">This is the sidebar for the header.</DialogDescription>
                     <SheetHeader>
                         <SheetTitle>
                             {

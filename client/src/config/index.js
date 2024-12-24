@@ -134,8 +134,50 @@ export const shoppingViewHeaderMenuItems = [
         path: "/shop/listing",
     },
     {
-      id: "search",
-      label: "Search",
-      path: "/shop/search",
+        id: "search",
+        label: "Search",
+        path: "/shop/search",
     },
-  ];
+];
+
+export const categoryOptionsMap = {
+    fruits : 'Fruits',
+    vegetables : 'Vegetables',
+    bakery : 'Bakery',
+    beverages : 'Beverages',
+    dairy : 'Dairy'
+}
+
+export const brandOptionsMap = {
+    amul : 'Amul',
+    nestle : 'Nestle',
+    britannia : 'Britannia',
+    haldiram : 'Haldiram',
+    pepsi : 'Pepsi',
+    coca_cola : 'Coca_cola'
+}
+
+export const filterOptions = {
+    category: [
+        { id: "fruits", label: "Fruits" },
+        { id: "vegetables", label: "Vegetables" },
+        { id: "bakery", label: "Bakery" },
+        { id: "beverages", label: "Beverages" },
+        { id: "dairy", label: "Dairy" },
+    ],
+    brand: [
+        { id: "amul", label: "Amul" },
+        { id: "nestle", label: "Nestle" },
+        { id: "britannia", label: "Britannia" },
+        { id: "haldiram", label: "Haldiram" },
+        { id: "pepsi", label: "Pepsi" },
+        { id: "coca_cola", label: "Coca_cola" },
+    ],
+};
+
+export const sortOptions = [
+    { id: "price-lowtohigh", label: "Price: Low to High" },
+    { id: "price-hightolow", label: "Price: High to Low" },
+    { id: "title-atoz", label: "Title: A to Z" },
+    { id: "title-ztoa", label: "Title: Z to A" },
+];

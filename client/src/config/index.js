@@ -61,7 +61,6 @@ export const addProductFormElements = [
             { id: "fruits", label: "Fruits" },
             { id: "vegetables", label: "Vegetables" },
             { id: "dairy", label: "Dairy Products" },
-            { id: "meat", label: "Meat & Seafood" },
             { id: "bakery", label: "Bakery Items" },
             { id: "beverages", label: "Beverages" },
         ],
@@ -102,3 +101,41 @@ export const addProductFormElements = [
         placeholder: "Enter total stock",
     },
 ];
+
+export const shoppingViewHeaderMenuItems = [
+    {
+        id: "home",
+        label: "Home",
+        path: "/shop/home",
+    },
+    {
+        id: "products",
+        label: "Products",
+        path: "/shop/listing",
+    },
+    {
+        id: "fruits",
+        label: "Fruits",
+        path: "/shop/listing",
+    },
+    {
+        id: "vegetables",
+        label: "Vegetables",
+        path: "/shop/listing",
+    },
+    {
+        id: "bakery",
+        label: "Bakery",
+        path: "/shop/listing",
+    },
+    {
+        id: "beverages",
+        label: "Beverages",
+        path: "/shop/listing",
+    },
+    {
+      id: "search",
+      label: "Search",
+      path: "/shop/search",
+    },
+  ];

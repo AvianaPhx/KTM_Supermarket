@@ -27,10 +27,10 @@ function ShoppingProductTile({product}){
                         <span className="text-[16px] text-muted-foreground">{brandOptionsMap[product?.brand]}</span>
                     </div>
                     <div className="flex justify-between items-center mb-2">
-                        <span className={`${product?.salePrice > 0 ? 'line-through' : ''} text-lg font-semibold text-primary`}>{product?.price}</span>
+                        <span className={`${product?.salePrice > 0 ? 'line-through' : ''} text-lg font-semibold text-primary`}>${product?.price}</span>
                         {
                             product?.salePrice > 0 ?
-                            <span className="text-lg font-semibold text-primary">{product?.salePrice}</span>
+                            <span className="text-lg font-semibold text-primary">${product?.salePrice}</span>
                             : null
                         }
 

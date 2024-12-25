@@ -7,19 +7,55 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import { useState } from "react";
 
 function ShoppingListing() {
     const dispatch = useDispatch();
     const {productList} = useSelector(state=> state.shopProducts)
+    const [filters, setFilters] = useState({});
+    const [sort, setSort] = useState(null);
+
+    function handleSort(value) {
+        setSort(value);
+    }
+
+    function handleFilter(getSectionId, getCurrentOption) {
+        console.log(getSectionId, getCurrentOption);
+
+        let cpyFilters = { ...filters };
+        const indexOfCurrentSection = Object.keys(cpyFilters).indexOf(getSectionId);
+
+        if (indexOfCurrentSection === -1) {
+            cpyFilters = {
+              ...cpyFilters,
+              [getSectionId]: [getCurrentOption],
+            };
+        } else {
+            const indexOfCurrentOption =
+              cpyFilters[getSectionId].indexOf(getCurrentOption);
+      
+            if (indexOfCurrentOption === -1)
+              cpyFilters[getSectionId].push(getCurrentOption);
+            else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1);
+        }
+
+        setFilters(cpyFilters);
+        sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
+    }
+
+    useEffect(()=> {
+        setSort('price-lowtohigh')
+        setFilters(JSON.parse(sessionStorage.getItem('filters')) || {})
+    },[])
 
     useEffect(()=>{
         dispatch(fetchAllFilteredProducts())
     },[dispatch])
 
-    console.log(productList);
+    console.log(filters, 'filters');
 
     return <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
-        <ProductFilter />
+        <ProductFilter filters={filters} handleFilter={handleFilter}/>
         <div className="bg-background w-full rounded-lg shadow-sm">
             <div className="p-4 border-b flex items-center justify-between">
                 <h2 className="text-lg font-extrabold">All Products</h2>
@@ -35,7 +71,7 @@ function ShoppingListing() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[200px]">
-                            <DropdownMenuRadioGroup>
+                            <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
                                 {
                                     sortOptions.map((sortItem) => (
                                         <DropdownMenuRadioItem

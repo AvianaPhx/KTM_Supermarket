@@ -16,6 +16,10 @@ import {
 import { DialogTitle, DialogDescription } from "@radix-ui/react-dialog";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
+import UserCartWrapper from "./cart-wrapper";
+import { useState } from "react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
 
 
 function MenuItems(){
@@ -28,7 +32,8 @@ function MenuItems(){
 }
 
 function HeaderRightContent(){
-    const {user } = useSelector(state=>state.auth)
+    const { user } = useSelector(state=>state.auth)
+    const [openCartSheet, setOpenCartSheet] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -37,10 +42,18 @@ function HeaderRightContent(){
       }
 
     return <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-        <Button varient="outline" size="icon">
-            <ShoppingCart className="w-6 h-6"/>
-            <span className="sr-only">User Cart</span>
-        </Button>
+        <Sheet open={openCartSheet} onOpenChange={()=>setOpenCartSheet(false)}>
+                <VisuallyHidden>
+                    <DialogTitle>Cart</DialogTitle>
+                    <DialogDescription>this is a sidebar for cart</DialogDescription>
+                </VisuallyHidden>
+            <Button onClick={()=>setOpenCartSheet(true)} varient="outline" size="icon">
+                <ShoppingCart className="w-6 h-6"/>
+                <span className="sr-only">User Cart</span>
+            </Button>
+            <UserCartWrapper />
+        </Sheet>
+
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Avatar className="bg-black">

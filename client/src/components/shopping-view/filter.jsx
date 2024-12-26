@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { filterOptions } from "@/config";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Separator } from "@radix-ui/react-separator";
+import { Separator } from "../ui/separator";
 
 function ProductFilter({filters, handleFilter}) {
     return (

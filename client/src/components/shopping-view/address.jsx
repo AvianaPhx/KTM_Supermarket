@@ -115,7 +115,6 @@ function Address({setCurrentSelectedAddress}){
         {addressList && addressList.length > 0
             ? addressList.map((singleAddressItem) => (
                 <AddressCard
-                    key={singleAddressItem._id} 
                     handleDeleteAddress={handleDeleteAddress}
                     addressInfo={singleAddressItem}
                     handleEditAddress={handleEditAddress}

@@ -100,7 +100,6 @@ function ShoppingHome() {
         <div className="relative w-full h-[600px] overflow-hidden">
             {slides.map((slide, index) => (
                 <img
-                    key={index}
                     src={slide}
                     alt={`Slide ${index + 1}`}
                     className={`${
@@ -133,8 +132,8 @@ function ShoppingHome() {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {
-                        categoriesWithIcon.map((categoryItem, index) => (
-                            <Card onClick={()=>handleNavigateToListingPage(categoryItem, 'category')} key={categoryItem.id || index} className="cursor-pointer hover:shadow-lg transition-shadow">
+                        categoriesWithIcon.map((categoryItem) => (
+                            <Card onClick={()=>handleNavigateToListingPage(categoryItem, 'category')}  className="cursor-pointer hover:shadow-lg transition-shadow">
                                 <CardContent className="flex flex-col items-center justify-center p-6">
                                     <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
                                     <span className="font-bold">{categoryItem.label}</span>
@@ -153,8 +152,8 @@ function ShoppingHome() {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {
-                        brandWithIcon.map((brandItem, index) => (
-                            <Card onClick={()=>handleNavigateToListingPage(brandItem, 'brand')} key={brandItem.id || index} className="cursor-pointer hover:shadow-lg transition-shadow">
+                        brandWithIcon.map((brandItem) => (
+                            <Card onClick={()=>handleNavigateToListingPage(brandItem, 'brand')}  className="cursor-pointer hover:shadow-lg transition-shadow">
                                 <CardContent className="flex flex-col items-center justify-center p-6">
                                     <brandItem.icon className='w-12 h-12 mb-4 text-primary'/>
                                     <span className="font-bold">{brandItem.label}</span>

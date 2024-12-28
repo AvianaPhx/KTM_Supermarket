@@ -20,9 +20,8 @@ function UserCartWrapper({cartItems, setOpenCartSheet}){
         <div className="mt-8 space-y-4">
             {
                 cartItems && cartItems.length > 0 ? 
-                cartItems.map((item, index) => (
+                cartItems.map((item) => (
                     <UserCartItemsContent 
-                        key={item.id || item.uniqueIdentifier || `cart-item-${index}`} 
                         cartItem={item} 
                     />
                 )) 

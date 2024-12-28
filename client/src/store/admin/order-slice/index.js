@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useEffect } from "react";
 
 const initialState = {
     orderList: [],
     orderDetails: null,
+    isLoading: false, 
 };
 
 export const getAllOrdersForAdmin = createAsyncThunk(
@@ -28,6 +30,21 @@ export const getOrderDetailsForAdmin = createAsyncThunk(
     }
 );
 
+export const updateOrderStatus = createAsyncThunk(
+  "/order/updateOrderStatus",
+  async ({ id, orderStatus }) => {
+    const response = await axios.put(
+      `http://localhost:5000/api/admin/orders/update/${id}`,
+      {
+        orderStatus,
+      }
+    );
+
+    return response.data;
+  }
+);
+
+
 const adminOrderSlice = createSlice({
     name: "adminOrderSlice",
     initialState,
@@ -45,9 +62,10 @@ const adminOrderSlice = createSlice({
         state.isLoading = false;
         state.orderList = action.payload.data;
       })
-      .addCase(getAllOrdersForAdmin.rejected, (state) => {
+      .addCase(getAllOrdersForAdmin.rejected, (state, action) => {
         state.isLoading = false;
         state.orderList = [];
+        console.error(action.error.message);
       })
       .addCase(getOrderDetailsForAdmin.pending, (state) => {
         state.isLoading = true;
@@ -56,9 +74,10 @@ const adminOrderSlice = createSlice({
         state.isLoading = false;
         state.orderDetails = action.payload.data;
       })
-      .addCase(getOrderDetailsForAdmin.rejected, (state) => {
+      .addCase(getOrderDetailsForAdmin.rejected, (state,action) => {
         state.isLoading = false;
         state.orderDetails = null;
+        console.error(action.error.message);
       });
     },
 });

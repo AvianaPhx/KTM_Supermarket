@@ -108,7 +108,7 @@ function ShoppingCheckout() {
                 {
                     cartItems && cartItems.items && cartItems.items.length > 0
                     ? cartItems.items.map((item) => (
-                        <UserCartItemsContent key={item.id || `${item.name}-${item.price}`} cartItem={item} />
+                        <UserCartItemsContent cartItem={item} />
                     ))
                     : null
                 }

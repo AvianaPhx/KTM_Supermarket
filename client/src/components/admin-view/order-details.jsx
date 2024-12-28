@@ -5,6 +5,8 @@ import { Label } from "../ui/label"
 import { Separator } from "../ui/separator"
 import { Badge } from "../ui/badge";
 import { useSelector } from "react-redux";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
 
 
 
@@ -25,8 +27,12 @@ function AdminOrderDetailsView({orderDetails}){
 
     return(
         <>
-            <DialogTitle className="hidden">Order Details</DialogTitle>
-            <DialogDescription className="hidden">admin details</DialogDescription>
+            <VisuallyHidden>
+                <DialogTitle className="hidden">Order Details</DialogTitle>
+            </VisuallyHidden>
+            <VisuallyHidden>
+                <DialogDescription className="hidden">admin details</DialogDescription>
+            </VisuallyHidden>
             <DialogContent className="sm:max-w-[600px]">
                 <div className="grid gap-6">
                     <div className="grid gap-2">

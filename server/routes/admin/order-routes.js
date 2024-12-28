@@ -8,6 +8,6 @@ const {
 const router = express.Router();
 
 router.get("/get", getAllOrdersOfAllUsers);
-router.get("/details/:id", getAllOrdersOfAllUsers)
+router.get("/details/:id", getOrderDetailsForAdmin)
 
 module.exports = router;

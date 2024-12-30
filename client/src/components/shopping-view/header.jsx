@@ -88,9 +88,12 @@ function HeaderRightContent(){
                     <DialogTitle>Cart</DialogTitle>
                     <DialogDescription>this is a sidebar for cart</DialogDescription>
                 </VisuallyHidden>
-            <Button onClick={()=>setOpenCartSheet(true)} varient="outline" size="icon">
-                <ShoppingCart className="w-6 h-6"/>
-                <span className="sr-only">User Cart</span>
+            <Button onClick={()=>setOpenCartSheet(true)} varient="outline" size="icon" className="relative"> 
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
+                {cartItems?.items?.length || 0}
+                </span>
+                <span className="sr-only">User cart</span>
             </Button>
             <UserCartWrapper 
                 setOpenCartSheet={setOpenCartSheet}

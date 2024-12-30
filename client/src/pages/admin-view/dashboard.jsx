@@ -1,6 +1,6 @@
 import ProductImageUpload from "@/components/admin-view/image-upload";
 import { Button } from "@/components/ui/button";
-import { addFeatureImage, getFeatureImages } from "@/store/common-slice";
+import { addFeatureImage, deleteFeatureImage, getFeatureImages } from "@/store/common-slice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,8 +11,6 @@ function AdminDashboard() {
     const dispatch = useDispatch()
     const {featureImageList} = useSelector(state=>state.commonFeature)
 
-    console.log(uploadedImageUrl, "uploadedImageUrl");
-
     function handleUploadFeatureImage(){
         dispatch(addFeatureImage(uploadedImageUrl)).then((data) =>{
             if(data?.payload?.success){
@@ -22,12 +20,20 @@ function AdminDashboard() {
             }
         })
     }
+    
+    function handleDeleteFeatureImage(id) {
+        dispatch(deleteFeatureImage(id)).then((data) => {
+          if (data?.payload?.success) {
+            console.log("Image deleted successfully!");
+            dispatch(getFeatureImages());
+          }
+        });
+      }
 
     useEffect(()=>{
         dispatch(getFeatureImages())
     },[dispatch])
 
-    console.log(featureImageList,"featureImageList")
 
     return  (
         <div>
@@ -45,15 +51,28 @@ function AdminDashboard() {
                 Upload
             </Button>
             <div className="flex flex-col gap-4 mt-5">
-                {
-                    featureImageList && featureImageList.length > 0 ?
-                    featureImageList.map(featureImgItem=> 
-                    <div>
-                        <img src={featureImgItem.image} className="w-full h-[300px] object-cover rounded-t-lg"/>
-                    </div>) : null
-                }
-
+                {featureImageList && featureImageList.length > 0 ? (
+                    featureImageList.map((featureImgItem) => (
+                    <div key={featureImgItem._id} className="flex flex-col items-center gap-2">
+                        <img
+                        src={featureImgItem.image}
+                        alt="Feature"
+                        className="w-full h-[300px] object-cover rounded-lg"
+                        />
+                        <Button
+                        className="w-[50%]"
+                        variant="destructive"
+                        onClick={() => handleDeleteFeatureImage(featureImgItem._id)}
+                        >
+                        Delete
+                        </Button>
+                    </div>
+                    ))
+                ) : (
+                    <p>No images available</p>
+                )}
             </div>
+
         </div>
     )
 }

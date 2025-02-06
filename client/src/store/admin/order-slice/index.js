@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect } from "react";
 
 const initialState = {
     orderList: [],

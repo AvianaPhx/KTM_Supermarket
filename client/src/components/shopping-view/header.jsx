@@ -36,6 +36,7 @@ function MenuItems(){
         const currentFilter = 
             getCurrentMenuItem.id !== 'home' && 
             getCurrentMenuItem.id !== 'products' && 
+            getCurrentMenuItem.id !== 'about-us' && 
             getCurrentMenuItem.id !== 'search'
         ? {
             category : [getCurrentMenuItem.id]
@@ -49,16 +50,19 @@ function MenuItems(){
     }
 
     
-    return (
-        <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
+return (
+        <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-8 lg:flex-row">
             {shoppingViewHeaderMenuItems.map((menuItem) => (
-                <Label
+                <button
                     onClick={() => handleNavigate(menuItem)}
-                    className="text-sm font-medium cursor-pointer"
+                    className={`text-sm font-medium cursor-pointer px-4 py-2 transition-all duration-300 ease-in-out 
+                        ${location.pathname === menuItem.path ? "text-white font-semibold" : "text-black-300 hover:text-white"}`}
+                        
                     key={menuItem.id}
+                    aria-label={menuItem.label}
                 >
                     {menuItem.label}
-                </Label>
+                </button>
             ))}
         </nav>
     );
@@ -133,7 +137,7 @@ function HeaderRightContent(){
 function ShoppingHeader() {
 
     return (
-        <header className="sticky top-0 z-40 w-full border-b bg-background">
+        <header className="sticky top-0 z-40 w-full border-b bg-background bg-red-500">
             <div className="flex h-16 items-center justify-between px-4 md:px-6">
                 <Link to="/shop/home" className="flex items-center gap-2">
                     <HousePlug className="h-6 w-6" />

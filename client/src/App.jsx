@@ -15,6 +15,7 @@ import ShoppingCheckout from "./pages/shopping-view/checkout";
 import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
+import OurStory from "./pages/shopping-view/about-us";
 import { useSelector } from "react-redux";
 import { useDispatch} from "react-redux";
 import { useEffect } from "react";
@@ -94,6 +95,7 @@ function App() {
           <Route path ="paypal-return" element={<PaypalReturnPage/>}/>
           <Route path ="payment-success" element={<PaymentSuccessPage/>}/>
           <Route path ="search" element={<SearchProducts/>}/>
+          <Route path ="about-us" element={<OurStory/>}/>
         </Route>
 
         <Route path="/unauth-page" element={<UnauthPage/>} />

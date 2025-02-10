@@ -337,7 +337,32 @@ function ShoppingHome() {
         </div>
       </section>
 
+      <Card className="w-full">
+          <div className="flex items-start space-x-6">
+              <div className="flex-1 pl-4">
+                  <img src={''} alt="KTM-SuperMarket" className="rounded-full" />
+              </div>
+              <div className=" flex-1 mt-7 space-x-2 space-y-4 flex-grow mb-7">
+                  <div className=" items-center space-x-2">
+                      <h3 className="text-lg font-semibold">What makes us different?</h3>
+                  </div>
 
+                  <div className="mt-7 items-center">
+                      <p className=' pr-10'>
+                          Our Commitment to Quality & Service! As a Nepalese family, we're proud to offer the first online store that reveals the Best Before date for every product. Our commitment to top-notch quality goes above and beyond, ensuring you get the best.
+                      </p>
+                      <p className='mt-7 pr-10'>
+                          We provide same-day delivery to 200+ suburbs around Perth, and we don't stop there — we also offer Australia-wide shipping. Welcome to a grocery store where transparency and quality come standard. Your satisfaction is our guarantee.
+                      </p>
+                  </div>
+                  <div>
+                      <button className="border-2 border-double border-black mt-7 px-4 py-2 bg-transparent text-black rounded-full hover:bg-black hover:text-white" onClick={() => {navigate("/shop/about-us"); window.scrollTo(0, 0);}}> 
+                          About Us
+                      </button>
+                  </div>
+              </div>
+          </div>
+        </Card>
 
       <ProductDetailsDialog
         open={openDetailsDialog}

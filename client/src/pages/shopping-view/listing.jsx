@@ -169,10 +169,17 @@ function ShoppingListing() {
                     </DropdownMenu>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                {
-                    productList && productList.length > 0 ?
-                    productList.map((productItem)=> <ShoppingProductTile handleGetProductDetails={handleGetProductDetails} product={productItem} handleAddtoCart={handleAddtoCart}/>) : null
+            <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[calc(100vh-180px)] place-items-center">
+                {productList && productList.length > 0 ? 
+                    productList.map((productItem) => (
+                        <ShoppingProductTile 
+                            key={productItem.id}
+                            handleGetProductDetails={handleGetProductDetails} 
+                            product={productItem} 
+                            handleAddtoCart={handleAddtoCart}
+                        />
+                    )) 
+                    : <p>No products found</p>
                 }
             </div>
         </div>

@@ -1,10 +1,9 @@
+import React from 'react';
 import { Mail, Facebook, Instagram } from 'lucide-react';
-
-
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-400 text-black p-8">{/* Footer Colour here!! */}
+    <footer className="bg-red-400 text-black p-8 mt-auto">{/* Footer Colour here!! */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Company Info */}
         <div className="space-y-4">

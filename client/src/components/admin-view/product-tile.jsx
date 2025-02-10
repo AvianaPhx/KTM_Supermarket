@@ -1,5 +1,7 @@
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
+import { brandOptionsMap, categoryOptionsMap, audienceOptionsMap } from "@/config";
+import { Separator } from "../ui/separator";
 
 function AdminProductTile({product, setFormData, setOpenCreateProductsDialog, setCurrentEditedId, handleDelete,}) {
     return(
@@ -14,6 +16,11 @@ function AdminProductTile({product, setFormData, setOpenCreateProductsDialog, se
                 </div>
                 <CardContent>
                     <h2 className="text-xl font-bold mb-2 mt-2">{product?.title}</h2>
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="text-[16px]"> Category : {categoryOptionsMap[product?.category]}</span>
+                            <span className="text-[16px]">Brand : {brandOptionsMap[product?.brand]}</span>
+                            <span className="text-[16px]"> Audience : {audienceOptionsMap[product?.audience]}</span>
+                        </div>
                     <div className="flex justify-between items-center mb-2">
                         <span className={`${product?.salePrice > 0 ? 'line-through' : ''} text-lg font-semibold text-primary`}>${product?.price}</span>
                         {

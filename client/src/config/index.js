@@ -78,6 +78,17 @@ export const addProductFormElements = [
             { id: "coca_cola", label: "Coca-Cola" },
         ],
     },
+
+    {
+        label: "Audience",
+        name: "audience",
+        componentType: "select",
+        options: [
+            { id: "nepalese", label: "Nepalese" },
+            { id: "indian", label: "Indian" },
+            { id: "islanders", label: "Islanders" },
+        ],
+    },
       
     {
         label: "Price",
@@ -142,6 +153,12 @@ export const brandOptionsMap = {
     coca_cola : 'Coca_cola'
 }
 
+export const audienceOptionsMap = {
+    nepalese : 'Nepalese',
+    indian : 'Indian',
+    islanders : 'Islanders'
+}
+
 export const filterOptions = {
     category: [
         { id: "fruits", label: "Fruits" },
@@ -158,6 +175,11 @@ export const filterOptions = {
         { id: "pepsi", label: "Pepsi" },
         { id: "coca_cola", label: "Coca_cola" },
     ],
+    audience: [
+        { id: "nepalese", label: "Nepalese" },
+        { id: "indian", label: "Indian" },
+        { id: "islanders", label: "Islanders" },
+    ]
 };
 
 export const sortOptions = [

@@ -1,4 +1,4 @@
-import { brandOptionsMap, categoryOptionsMap } from "@/config";
+import { brandOptionsMap, categoryOptionsMap, audienceOptionsMap } from "@/config";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
@@ -30,6 +30,7 @@ function ShoppingProductTile({product, handleGetProductDetails, handleAddtoCart}
                     <div className="flex justify-between items-center mb-2">
                         <span className="text-[16px] text-muted-foreground">{categoryOptionsMap[product?.category]}</span>
                         <span className="text-[16px] text-muted-foreground">{brandOptionsMap[product?.brand]}</span>
+                        <span className="hidden">{audienceOptionsMap[product?.audience]}</span>
                     </div>
                     <div className="flex justify-between items-center mb-2">
                         <span className={`${product?.salePrice > 0 ? 'line-through' : ''} text-lg font-semibold text-primary`}>${product?.price}</span>

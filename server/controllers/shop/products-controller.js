@@ -2,7 +2,7 @@ const Product = require("../../models/Product");
 
 const getFilteredProducts = async (req, res) => {
   try {
-    const { category = [], brand = [], sortBy = "price-lowtohigh" } = req.query;
+    const { category = [], brand = [], audience = [], sortBy = "price-lowtohigh" } = req.query;
 
     let filters = {};
 
@@ -12,6 +12,10 @@ const getFilteredProducts = async (req, res) => {
 
     if (brand.length) {
       filters.brand = { $in: brand.split(",") };
+    }
+
+    if (audience.length) {
+      filters.audience = { $in: audience.split(",") };
     }
 
     let sort = {};

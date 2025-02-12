@@ -9,13 +9,19 @@ cloudinary.config({
 
 const storage = new multer.memoryStorage();
 
+// Function to upload an image to Cloudinary
 async function imageUploadUtil(file, folder = "default_folder") {
-  const result = await cloudinary.uploader.upload(file, {
-    resource_type: "auto",
-    folder: folder,
-  });
-
-  return result;
+  try {
+    const result = await cloudinary.uploader.upload(file, {
+      resource_type: "auto",
+      folder: folder, // Specify the folder
+      folder: "advertisements",
+    });
+    return result;
+  } catch (error) {
+    console.error(`Error uploading image to folder ${folder}:`, error);
+    throw error;
+  }
 }
 
 // Function to fetch images from a specific folder in Cloudinary
@@ -32,6 +38,19 @@ async function getImagesFromFolder(folder) {
   }
 }
 
+// Fetch advertisement images from Cloudinary
+async function getAdvertisementImages() {
+  try {
+    const result = await cloudinary.search
+      .expression("folder:advertisements") // Fetch images from the "advertisements" folder
+      .execute();
+    return result.resources; // Return the list of advertisement images
+  } catch (error) {
+    console.error("Error fetching advertisement images:", error);
+    throw error;
+  }
+}
+
 const upload = multer({ storage });
 
-module.exports = { upload, imageUploadUtil };
+module.exports = { upload, imageUploadUtil, getImagesFromFolder, getAdvertisementImages, };

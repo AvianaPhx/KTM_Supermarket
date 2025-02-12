@@ -11,6 +11,7 @@ import shopSearchSlice from './shop/search-slice'
 import shopReviewSlice from './shop/review-slice'
 import commonFeatureSlice from './common-slice'
 import commonBannerSlice from './common-slice'
+import commonReducer from "./common-slice";
 
 
 const store = configureStore({
@@ -28,6 +29,7 @@ const store = configureStore({
         shopReview : shopReviewSlice,
         commonFeature : commonFeatureSlice,
         commonBanner : commonBannerSlice,
+        common: commonReducer,
     }
 });
 

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner1.jpg";
+
 import {
   CarrotIcon,
   ChevronLeftIcon,
@@ -17,10 +17,12 @@ import ShoppingProductTile from "@/components/shopping-view/product-tile";
 import { useNavigate } from "react-router-dom";
 import { fetchProductDetails } from "@/store/shop/products-slice";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
-import { toast, useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
-import { getBannerImages ,getFeatureImages } from "@/store/common-slice";
+import { getBannerImages ,getFeatureImages, getAdvertisementImages } from "@/store/common-slice";
 import aboutus from "../../assets/about_us_home.jpg"
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const categoriesWithIcon = [
   { id: "food", label: "Food" , icon: CitrusIcon },
@@ -39,11 +41,33 @@ const brandWithIcon = [
   { id: "coca_cola", label: "Coca_cola", image: '' },
 ];
 
+function AdvertisementModal({ isOpen, onClose, advertisementUrl }) {
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Advertisement</DialogTitle>
+        </DialogHeader>
+        <img
+          src={advertisementUrl}
+          alt="Advertisement"
+          className="w-full h-auto object-cover rounded-lg"
+        />
+
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function ShoppingHome() {
-  const { bannerImageList, featureImageList } = useSelector((state) => state.commonFeature);
+  const { bannerImageList, featureImageList, advertisementImageList } = useSelector((state) => state.commonFeature);
 
   // State to store the current banner image URL
   const [currentBannerUrl, setCurrentBannerUrl] = useState("");
+
+  // State to store the current advertisement image URL
+  const [currentAdvertisementUrl, setCurrentAdvertisementUrl] = useState("");
+  const [isAdvertisementVisible, setIsAdvertisementVisible] = useState(true);
 
     // Select a random banner image on component mount
     useEffect(() => {
@@ -52,6 +76,14 @@ function ShoppingHome() {
         setCurrentBannerUrl(bannerImageList[randomIndex].image);
       }
     }, [bannerImageList]);
+
+    // Select a random advertisement image on component mount
+    useEffect(() => {
+      if (advertisementImageList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * advertisementImageList.length);
+        setCurrentAdvertisementUrl(advertisementImageList[randomIndex].image);
+      }
+    }, [advertisementImageList]);
 
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -122,10 +154,20 @@ function ShoppingHome() {
   useEffect(() => {
     dispatch(getFeatureImages());
     dispatch(getBannerImages());
+    dispatch(getAdvertisementImages());
   }, [dispatch]);
 
   return (
     <div className="flex flex-col min-h-screen">
+
+      {/* Advertisement Pop-up */}
+      {currentAdvertisementUrl && (
+        <AdvertisementModal
+          isOpen={isAdvertisementVisible}
+          onClose={() => setIsAdvertisementVisible(false)}
+          advertisementUrl={currentAdvertisementUrl}
+        />
+      )}
 
       {/* Small Banner Section */}
       <div className="w-full bg-gray-50 p-2">

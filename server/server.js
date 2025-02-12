@@ -19,7 +19,8 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 const commonBannerRouter = require("./routes/common/banner-routes");
-
+const commonAdsRouter = require("./routes/common/ads-routes");
+const advertisementRoutes = require("./routes/common/ads-routes");
 
 mongoose
     .connect('mongodb+srv://AvianaPhoenix:asilentvoice@cluster0.lrnta.mongodb.net/')
@@ -84,8 +85,8 @@ app.use('/api/shop/review', shopReviewRouter)
 
 app.use('/api/common/feature', commonFeatureRouter)
 app.use('/api/common/banner', commonBannerRouter)
-
-
+app.use('/api/common/ads', commonAdsRouter)
+app.use("/api/common/advertisement", advertisementRoutes);
 
 // Ad routes
 app.post('/api/ads', upload.single('image'), async (req, res) => {

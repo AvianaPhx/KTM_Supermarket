@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   featureImageList: [],
   bannerImageList: [],
+  advertisementImageList: [],
   error: null, // Added error state
 };
 
@@ -77,10 +78,50 @@ export const deleteBannerImage = createAsyncThunk(
   }
 );
 
+// Thunk to fetch advertisement images from your backend API
+export const getAdvertisementImages = createAsyncThunk(
+  "common/getAdvertisementImages",
+  async () => {
+    const response = await axios.get(
+      `http://localhost:5000/api/common/advertisement/get`
+    );
+    return response.data;
+  }
+);
+
+// Thunk to add an advertisement image to your backend API
+export const addAdvertisementImage = createAsyncThunk(
+  "common/addAdvertisementImage",
+  async (image) => {
+    const response = await axios.post(
+      `http://localhost:5000/api/common/advertisement/add`,
+      { image }
+    );
+    return response.data;
+  }
+);
+
+// Thunk to delete an advertisement image from your backend API
+export const deleteAdvertisementImage = createAsyncThunk(
+  "common/deleteAdvertisementImage",
+  async (id) => {
+    const response = await axios.delete(
+      `http://localhost:5000/api/common/advertisement/delete/${id}`
+    );
+    return response.data;
+  }
+);
+
 // Create the slice
 const commonSlice = createSlice({
   name: "common",
-  initialState,
+  initialState:{
+    isLoading: false,
+    featureImageList: [],
+    bannerImageList: [],
+    advertisementImageList: [],
+    error: null,
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -170,7 +211,53 @@ const commonSlice = createSlice({
       .addCase(deleteBannerImage.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+
+// Fetch advertisement images from backend API
+      .addCase(getAdvertisementImages.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getAdvertisementImages.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.advertisementImageList = action.payload.data;
+      })
+      .addCase(getAdvertisementImages.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+
+      // Add advertisement image to backend API
+      .addCase(addAdvertisementImage.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addAdvertisementImage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.advertisementImageList.push(action.payload.data);
+      })
+      .addCase(addAdvertisementImage.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+
+      // Delete advertisement image from backend API
+      .addCase(deleteAdvertisementImage.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteAdvertisementImage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.advertisementImageList = state.advertisementImageList.filter(
+          (image) => image._id !== action.payload.id
+        );
+      })
+      .addCase(deleteAdvertisementImage.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
+      
+
   },
 });
 

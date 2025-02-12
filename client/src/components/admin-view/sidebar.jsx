@@ -1,6 +1,7 @@
 import {
   BadgeCheck,
   ChartNoAxesCombined,
+  FileSpreadsheet,
   LayoutDashboard,
   ShoppingBasket,
 } from "lucide-react";
@@ -32,6 +33,12 @@ const adminSidebarMenuItems = [
       label: "Orders",
       path: "/admin/orders",
       icon: <BadgeCheck />,
+    },
+    {
+      id: "adv",
+      label: "Advertisement",
+      path: "/admin/ads",
+      icon: <FileSpreadsheet />,
     },
   ];
 

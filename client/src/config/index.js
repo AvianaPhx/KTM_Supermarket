@@ -58,11 +58,11 @@ export const addProductFormElements = [
         name: "category",
         componentType: "select",
         options: [
-            { id: "fruits", label: "Fruits" },
+            { id: "food", label: "Food" },
             { id: "vegetables", label: "Vegetables" },
-            { id: "dairy", label: "Dairy Products" },
-            { id: "bakery", label: "Bakery Items" },
-            { id: "beverages", label: "Beverages" },
+            { id: "snacks", label: "Snacks" },
+            { id: "drinks", label: "Drinks" },
+            { id: "fish_and_meat", label: "Fish and Meat" },
         ],
     },
     {
@@ -137,11 +137,11 @@ export const shoppingViewHeaderMenuItems = [
 ];
 
 export const categoryOptionsMap = {
-    fruits : 'Fruits',
+    food : 'Food',
     vegetables : 'Vegetables',
-    bakery : 'Bakery',
-    beverages : 'Beverages',
-    dairy : 'Dairy'
+    snacks : 'Snacks',
+    drinks : 'Drinks',
+    fish_and_meat : 'Fish and Meat'
 }
 
 export const brandOptionsMap = {
@@ -161,11 +161,11 @@ export const audienceOptionsMap = {
 
 export const filterOptions = {
     category: [
-        { id: "fruits", label: "Fruits" },
+        { id: "food", label: "Food" },
         { id: "vegetables", label: "Vegetables" },
-        { id: "bakery", label: "Bakery" },
-        { id: "beverages", label: "Beverages" },
-        { id: "dairy", label: "Dairy" },
+        { id: "snacks", label: "Snacks" },
+        { id: "drinks", label: "Drinks" },
+        { id: "fish_and_meat", label: "Fish and Meat" },
     ],
     brand: [
         { id: "amul", label: "Amul" },

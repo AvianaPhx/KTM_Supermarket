@@ -1,16 +1,15 @@
 import { Button } from "@/components/ui/button";
 import bannerOne from "../../assets/banner1.jpg";
-import bannerTwo from "../../assets/banner2.jpg";
-import bannerThree from "../../assets/banner3.jpg";
 import {
-  AppleIcon,
   CarrotIcon,
   CatIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   CroissantIcon,
   CupSodaIcon,
-  MilkIcon,
+  CitrusIcon,
+  DonutIcon,
+  BeefIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
@@ -23,22 +22,23 @@ import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { toast, useToast } from "@/hooks/use-toast";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
+import aboutus from "../../assets/about_us_home.jpg"
 
 const categoriesWithIcon = [
-  { id: "fruits", label: "Fruits", icon: AppleIcon },
+  { id: "food", label: "Food" , icon: CitrusIcon },
   { id: "vegetables", label: "Vegetables", icon: CarrotIcon },
-  { id: "dairy", label: "Dairy Products", icon: MilkIcon },
-  { id: "bakery", label: "Bakery Items", icon: CroissantIcon },
-  { id: "beverages", label: "Beverages", icon: CupSodaIcon },
+  { id: "snacks", label: "Snacks", icon: DonutIcon },
+  { id: "drinks", label: "Drinks", icon: CupSodaIcon },
+  { id: "fish_and_meat", label: "Fish and Meat", icon: BeefIcon },
 ];
 
 const brandWithIcon = [
-  { id: "amul", label: "Amul", icon: CatIcon },
-  { id: "nestle", label: "Nestle", icon: CatIcon },
-  { id: "britannia", label: "Britannia", icon: CatIcon },
-  { id: "haldiram", label: "Haldiram", icon: CatIcon },
-  { id: "pepsi", label: "Pepsi", icon: CatIcon },
-  { id: "coca_cola", label: "Coca_cola", icon: CatIcon },
+  { id: "amul", label: "Amul", image: "https://exchange4media.gumlet.io/news-photo/136540-big24.jpg" },
+  { id: "nestle", label: "Nestle", image: "https://www.groupcaliber.com/wp-content/uploads/2022/08/nestle_case_study_logo_feaure_image.png" },
+  { id: "britannia", label: "Britannia", image: '' },
+  { id: "haldiram", label: "Haldiram", image: '' },
+  { id: "pepsi", label: "Pepsi", image: '' },
+  { id: "coca_cola", label: "Coca_cola", image: '' },
 ];
 
 function ShoppingHome() {
@@ -115,6 +115,16 @@ function ShoppingHome() {
 
   return (
     <div className="flex flex-col min-h-screen">
+
+      {/* Small Banner Section */}
+      <div className="w-full bg-gray-50 p-2">
+        <img
+          src={bannerOne}
+          alt="Small Promotional Banner"
+          className="w-full h-[100px] object-cover rounded-lg"
+        />
+      </div>
+      
       <div className="relative w-full h-[600px] overflow-hidden">
         {featureImageList && featureImageList.length > 0
           ? featureImageList.map((slide, index) => (
@@ -179,23 +189,28 @@ function ShoppingHome() {
       </section>
 
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {brandWithIcon.map((brandItem) => (
-              <Card
-                onClick={() => handleNavigateToListingPage(brandItem, "brand")}
-                className="cursor-pointer hover:shadow-lg transition-shadow"
-              >
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{brandItem.label}</span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {brandWithIcon.map((brandItem, index) => (
+                        <Card
+                            key={index}
+                            onClick={() => handleNavigateToListingPage(brandItem, "brand")}
+                            className="cursor-pointer hover:shadow-lg transition-shadow"
+                        >
+                            <CardContent className="flex flex-col items-center justify-center p-6">
+                                <img
+                                    src={brandItem.image} // Use the image property from the object
+                                    alt={brandItem.label}
+                                    className="w-full h-auto mb-4 object-contain"
+                                />
+                                <span className="font-bold">{brandItem.label}</span>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
 
       <section className="py-12">
         <div className="container mx-auto px-4">
@@ -339,8 +354,8 @@ function ShoppingHome() {
 
       <Card className="w-full">
           <div className="flex items-start space-x-6">
-              <div className="flex-1 pl-4">
-                  <img src={''} alt="KTM-SuperMarket" className="rounded-full" />
+              <div className="flex-1 pl-[100px] mb-7 pt-4">
+                  <img src={aboutus} alt="KTM-SuperMarket" className="rounded-full w-[600px] h-[370px] object-cover" />
               </div>
               <div className=" flex-1 mt-7 space-x-2 space-y-4 flex-grow mb-7">
                   <div className=" items-center space-x-2">

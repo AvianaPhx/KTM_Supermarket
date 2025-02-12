@@ -45,15 +45,16 @@ function AdminDashboard() {
                 setImageLoadingState={setImageLoadingState}
                 imageLoadingState={imageLoadingState}
                 isCustomStyling = {true}
+                folder="default_folder"
                 // isEditMode={currentEditedId !== null}
             />
-            <Button onClick={handleUploadFeatureImage} className="mt-5 w-full">
+            <Button onClick={handleUploadFeatureImage} className="mt-5 w-full" disabled={!imageFile && !uploadedImageUrl}>
                 Upload
             </Button>
             <div className="flex flex-col gap-4 mt-5">
                 {featureImageList && featureImageList.length > 0 ? (
                     featureImageList.map((featureImgItem) => (
-                    <div key={featureImgItem._id} className="flex flex-col items-center gap-2">
+                    <div key={featureImgItem._id} className="flex flex-col items-center gap-2" >
                         <img
                         src={featureImgItem.image}
                         alt="Feature"

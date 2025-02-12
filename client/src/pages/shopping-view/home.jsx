@@ -19,7 +19,7 @@ import { fetchProductDetails } from "@/store/shop/products-slice";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { toast, useToast } from "@/hooks/use-toast";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
-import { getFeatureImages } from "@/store/common-slice";
+import { getBannerImages ,getFeatureImages } from "@/store/common-slice";
 import aboutus from "../../assets/about_us_home.jpg"
 
 const categoriesWithIcon = [
@@ -40,7 +40,19 @@ const brandWithIcon = [
 ];
 
 function ShoppingHome() {
-  const { featureImageList } = useSelector((state) => state.commonFeature);
+  const { bannerImageList, featureImageList } = useSelector((state) => state.commonFeature);
+
+  // State to store the current banner image URL
+  const [currentBannerUrl, setCurrentBannerUrl] = useState("");
+
+    // Select a random banner image on component mount
+    useEffect(() => {
+      if (bannerImageList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * bannerImageList.length);
+        setCurrentBannerUrl(bannerImageList[randomIndex].image);
+      }
+    }, [bannerImageList]);
+
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const { productList, productDetails } = useSelector(
@@ -109,6 +121,7 @@ function ShoppingHome() {
 
   useEffect(() => {
     dispatch(getFeatureImages());
+    dispatch(getBannerImages());
   }, [dispatch]);
 
   return (
@@ -116,11 +129,17 @@ function ShoppingHome() {
 
       {/* Small Banner Section */}
       <div className="w-full bg-gray-50 p-2">
-        <img
-          src={bannerOne}
-          alt="Small Promotional Banner"
-          className="w-full h-[100px] object-cover rounded-lg"
-        />
+        {currentBannerUrl ? (
+          <img
+            src={currentBannerUrl}
+            alt="Small Promotional Banner"
+            className="w-full h-[100px] object-cover rounded-lg"
+          />
+        ) : (
+          <div className="w-full h-[100px] flex items-center justify-center bg-gray-200 rounded-lg">
+            <p className="text-gray-500">No banner available</p>
+          </div>
+        )}
       </div>
       
       <div className="relative w-full h-[600px] overflow-hidden">

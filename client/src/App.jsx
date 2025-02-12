@@ -25,6 +25,7 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 import AdminAds from "./pages/admin-view/ads";
+import AdminBanner from "./components/admin-view/Banner";
 
 
 
@@ -81,6 +82,7 @@ function App() {
           <Route path ="orders" element={<AdminOrders/>} />
           <Route path ="features" element={<AdminFeatures/>} />
           <Route path ="ads" element={<AdminAds/>} />
+          <Route path ="banner" element={<AdminBanner/>} />
 
         </Route>
 

@@ -5,11 +5,15 @@ const handleImageUpload = async (req, res) => {
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         const url = "data:" + req.file.mimetype + ";base64," + b64;
-        const result = await imageUploadUtil(url);
+
+        // Extract the folder from the request body
+        const folder = req.body.folder || "default_folder";
+
+        const result = await imageUploadUtil(url, folder);
   
         res.json({
             success: true,
-            result,
+            result: { url: result.secure_url },
         });
     } catch (error) {
         console.log(error);

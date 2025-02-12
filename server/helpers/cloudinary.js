@@ -9,12 +9,27 @@ cloudinary.config({
 
 const storage = new multer.memoryStorage();
 
-async function imageUploadUtil(file) {
+async function imageUploadUtil(file, folder = "default_folder") {
   const result = await cloudinary.uploader.upload(file, {
     resource_type: "auto",
+    folder: folder,
   });
 
   return result;
+}
+
+// Function to fetch images from a specific folder in Cloudinary
+async function getImagesFromFolder(folder) {
+  try {
+    const result = await cloudinary.search
+      .expression(`folder:${folder}`) // Fetch images from the specified folder
+      .execute();
+
+    return result.resources; // Return the list of images
+  } catch (error) {
+    console.error(`Error fetching images from folder ${folder}:`, error);
+    throw error;
+  }
 }
 
 const upload = multer({ storage });

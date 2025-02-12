@@ -1,6 +1,8 @@
+import AdminAdvertisement from "../../components/admin-view/ads"
+
 function AdminAds() {
     return(
-        <div>ADS</div>
+        <AdminAdvertisement />
     )
 }
 

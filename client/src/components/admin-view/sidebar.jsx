@@ -3,6 +3,7 @@ import {
   ChartNoAxesCombined,
   FileSpreadsheet,
   LayoutDashboard,
+  Scroll,
   ShoppingBasket,
 } from "lucide-react";
 import {
@@ -39,6 +40,12 @@ const adminSidebarMenuItems = [
       label: "Advertisement",
       path: "/admin/ads",
       icon: <FileSpreadsheet />,
+    },
+    {
+      id: "banner",
+      label: "Banner",
+      path: "/admin/banner",
+      icon: <Scroll />,
     },
   ];
 
